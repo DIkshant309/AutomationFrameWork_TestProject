@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 public class LoginTestStep {
 
 
-    @Given("landing on the twitter webpage")
+    @Given("landing on the google webpage")
     public void landing_on_the_twitter_webpage() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
