@@ -18,8 +18,10 @@ public class LoginPage {
 
     @FindBy(how = How.ID, using = "pass")
     WebElement password;
-    @FindBy(how = How.ID, using = "u_0_i")
+    @FindBy(how = How.ID, using = "u_0_b")
     WebElement login;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"email_container\"]/div[2]")
+    WebElement error;
 
     public void EnterEmail(String abc)
     {
@@ -35,6 +37,12 @@ public class LoginPage {
     {
         login.click();
 
+    }
+
+    public String error()
+    {
+        String er = error.getText();
+return er;
     }
 
 
