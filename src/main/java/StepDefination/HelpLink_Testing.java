@@ -7,47 +7,40 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.LoginPage;
 
-public class LoginTestStep {
-    public LoginPage abc;
+public class HelpLink_Testing {
+    LoginPage help;
     WebDriver driver;
 
-
-    @Given("landing on the google webpage")
-    public void landing_on_the_facebook_webpage() {
+    @Given("landing on the facebook site")
+    public void landing_on_the_facebook_site() {
         System.setProperty("webdriver.chrome.driver", "D:\\Ideal projects\\AutomationFrameWork_TestProject\\Drivers\\chromedriver_win32\\chromedriver.exe" );
-         driver = new ChromeDriver(); /*instantiation*/
+        driver = new ChromeDriver();
         driver.get("https://www.facebook.com/");
-        abc = new LoginPage(driver);
-        abc.EnterEmail("diksahntsehgal@ymail.com");
-        abc.EnterPassword("abc");
-        abc.login();
-        String def = abc.error();
-        System.out.println(def);
-        if (def.contains(" doesn’t match any account.")){
-
-            System.out.println("test pass");
-
+        help = new LoginPage(driver);
+        help.help();
+        String output = help.help_output();
+        if(output.contains("Help Center"))
+        {
+            System.out.println("test is pass");
         }
-        else{
-            System.out.println("fail");
+        else
+        {
+            System.out.println("test is failed");
         }
-
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
 
-    @When("entering username and password")
-    public void entering_username_and_password() {
+    @When("clicking the help link")
+    public void clicking_the_help_link() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
-
     }
 
-    @Then("validating that i am logged in")
-    public void validating_that_i_am_logged_in() {
+    @Then("Validating the help page opening")
+    public void validating_the_help_page_opening() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
-
     }
 
 }

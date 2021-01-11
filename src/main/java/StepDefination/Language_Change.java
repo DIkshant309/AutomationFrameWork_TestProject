@@ -7,47 +7,46 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.LoginPage;
 
-public class LoginTestStep {
-    public LoginPage abc;
+public class Language_Change {
+
+    public LoginPage lang;
     WebDriver driver;
 
+    @Given("Landing on the facebook website")
+    public void landing_on_the_facebook_website() {
 
-    @Given("landing on the google webpage")
-    public void landing_on_the_facebook_webpage() {
         System.setProperty("webdriver.chrome.driver", "D:\\Ideal projects\\AutomationFrameWork_TestProject\\Drivers\\chromedriver_win32\\chromedriver.exe" );
-         driver = new ChromeDriver(); /*instantiation*/
+        driver = new ChromeDriver();
         driver.get("https://www.facebook.com/");
-        abc = new LoginPage(driver);
-        abc.EnterEmail("diksahntsehgal@ymail.com");
-        abc.EnterPassword("abc");
-        abc.login();
-        String def = abc.error();
-        System.out.println(def);
-        if (def.contains(" doesn’t match any account.")){
+        lang = new LoginPage(driver);
+      lang.lang();
+        String french =lang.fr();
+      System.out.println(french);
+      if(french.contains("vous permet de rester en contact avec les personnes qui comptent dans"))
+      {
+          System.out.println("test is pass");
 
-            System.out.println("test pass");
+      }
+      else {
+          System.out.println("Test is faild");
+        }
 
-        }
-        else{
-            System.out.println("fail");
-        }
+
 
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
 
-    @When("entering username and password")
-    public void entering_username_and_password() {
+    @When("Changing the language of the page")
+    public void changing_the_language_of_the_page() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
-
     }
 
-    @Then("validating that i am logged in")
-    public void validating_that_i_am_logged_in() {
+    @Then("validating that the language is changed")
+    public void validating_that_the_language_is_changed() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
-
     }
 
 }

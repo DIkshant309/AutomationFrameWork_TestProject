@@ -7,47 +7,46 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageFactory.LoginPage;
 
-public class LoginTestStep {
-    public LoginPage abc;
-    WebDriver driver;
+public class ForgotPassword_Analyzing {
+
+  public LoginPage pass;
+  WebDriver driver;
 
 
-    @Given("landing on the google webpage")
-    public void landing_on_the_facebook_webpage() {
+
+
+    @Given("landing on the facebook page")
+    public void landing_on_the_facebook_page() {
         System.setProperty("webdriver.chrome.driver", "D:\\Ideal projects\\AutomationFrameWork_TestProject\\Drivers\\chromedriver_win32\\chromedriver.exe" );
-         driver = new ChromeDriver(); /*instantiation*/
+        driver = new ChromeDriver();
         driver.get("https://www.facebook.com/");
-        abc = new LoginPage(driver);
-        abc.EnterEmail("diksahntsehgal@ymail.com");
-        abc.EnterPassword("abc");
-        abc.login();
-        String def = abc.error();
-        System.out.println(def);
-        if (def.contains(" doesn’t match any account.")){
-
-            System.out.println("test pass");
+        pass = new LoginPage(driver);
+        pass.forgot();
+        String  ss = pass.body();
+        if(ss.contains("Please enter your email or phone number to search for your account."))
+        {
+            System.out.println("test is pass ");
 
         }
-        else{
-            System.out.println("fail");
+        else
+        {
+            System.out.println("Test is fail ");
         }
 
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
 
-    @When("entering username and password")
-    public void entering_username_and_password() {
+    @When("clicking on the forgot password link")
+    public void clicking_on_the_forgot_password_link() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
-
     }
 
-    @Then("validating that i am logged in")
-    public void validating_that_i_am_logged_in() {
+    @Then("Analyzing the output of forgot password link")
+    public void analyzing_the_output_of_forgot_password_link() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
-
     }
 
 }
