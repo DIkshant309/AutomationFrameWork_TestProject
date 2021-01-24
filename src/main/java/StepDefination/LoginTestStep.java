@@ -21,7 +21,6 @@ public class LoginTestStep {
         System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver_win32/chromedriver");
         driver = new ChromeDriver();
         driver.get(SpiceJetURL);
-
         driver.manage().window().fullscreen();
         String URL = driver.getCurrentUrl();
 
