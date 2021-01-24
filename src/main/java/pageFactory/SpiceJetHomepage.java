@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,8 +72,13 @@ public class SpiceJetHomepage {
         SubmitBtnCLick.click();
     }
 
+    @FindBy(how = How.ID,using = "ctl00$mainContent$DropDownListCurrency")
+    WebElement CyrrencySelector;
 
-
-
-
+    public void CurrencySelector() {
+      Select s = new Select(CyrrencySelector);
+      s.selectByValue("USD");
+      s.selectByIndex(4);
+      s.selectByVisibleText("USD");
+    }
 }
