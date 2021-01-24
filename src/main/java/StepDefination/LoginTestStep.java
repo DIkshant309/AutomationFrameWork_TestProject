@@ -5,49 +5,54 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pageFactory.LoginPage;
+import org.junit.Assert;
+import pageFactory.SpiceJetHomepage;
+
+import static Utility.Constant.SpiceJetURL;
 
 public class LoginTestStep {
-    public LoginPage abc;
     WebDriver driver;
+    public SpiceJetHomepage objSpiceJetHomepage;
 
 
-    @Given("landing on the google webpage")
-    public void landing_on_the_facebook_webpage() {
-        System.setProperty("webdriver.chrome.driver", "D:\\Ideal projects\\AutomationFrameWork_TestProject\\Drivers\\chromedriver_win32\\chromedriver.exe" );
-         driver = new ChromeDriver(); /*instantiation*/
-        driver.get("https://www.facebook.com/");
-        abc = new LoginPage(driver);
-        abc.EnterEmail("diksahntsehgal@ymail.com");
-        abc.EnterPassword("abc");
-        abc.login();
-        String def = abc.error();
-        System.out.println(def);
-        if (def.contains(" doesn’t match any account.")){
+    @Given("landing on the SpiceJet HomePage")
+    public void landing_on_the_spice_jet_home_page() {
 
-            System.out.println("test pass");
+        System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver_win32/chromedriver");
+        driver = new ChromeDriver();
+        driver.get(SpiceJetURL);
+        driver.manage().window().fullscreen();
+        String URL = driver.getCurrentUrl();
 
-        }
-        else{
-            System.out.println("fail");
-        }
-
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("entering username and password")
-    public void entering_username_and_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals(SpiceJetURL, URL);
 
     }
 
-    @Then("validating that i am logged in")
-    public void validating_that_i_am_logged_in() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("entering the destination and the arrival information to get the rates")
+    public void entering_the_destination_and_the_arrival_information_to_get_the_rates() throws InterruptedException {
+        objSpiceJetHomepage = new SpiceJetHomepage(driver);
+
+        objSpiceJetHomepage.CLickOnHotelsTab();
+        Thread.sleep(2000);
+        objSpiceJetHomepage.CLickOnFlightsTab();
+        objSpiceJetHomepage.SelectDestinationCity("Delhi");
+        objSpiceJetHomepage.SubmitButtonCLick();
+        String color = objSpiceJetHomepage.ArrivalCityGetCSS();
+        System.out.print(color);
+      //  objSpiceJetHomepage.ClickingOnFlights("Covid 19 Information");
 
     }
+
+    @When("making the Assertions and validations for the information that was added")
+    public void making_the_assertions_and_validations_for_the_information_that_was_added() {
+
+    }
+
+    @Then("on the results page the validations were made and the results were presented")
+    public void on_the_results_page_the_validations_were_made_and_the_results_were_presented() {
+
+    }
+
+
 
 }
