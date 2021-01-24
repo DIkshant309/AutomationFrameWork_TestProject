@@ -1,18 +1,7 @@
 Feature: MyFeature_File
 
-  Scenario: Test1
-    Given  landing on the google webpage
-    When   entering username and password
-    Then   validating that i am logged in
-
-
-  Scenario: Test2
-    Given  landing on the google webpage
-    When   entering username3 and password3
-    Then   validating that i am logged in 33
-
-
-  Scenario: Test3
-    Given  landing on the google webpage
-    When   entering username1 and password1
-    Then   validating that i am logged in 22
+  Scenario: Getting the rates for flights from A to B
+    Given  landing on the SpiceJet HomePage
+    When   entering the destination and the arrival information to get the rates
+    And making the Assertions and validations for the information that was added
+    Then on the results page the validations were made and the results were presented
