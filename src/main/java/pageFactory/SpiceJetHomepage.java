@@ -2,6 +2,7 @@ package pageFactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -53,7 +54,8 @@ public class SpiceJetHomepage {
     @FindBy(how = How.ID,using = "ctl00_mainContent_ddl_originStation1_CTXT")
    WebElement SelectDestintipnCity;
 
-    public void SelectDestinationCity(String destination) {
+    public void SelectDestinationCity(String destination) throws InterruptedException {
+        Thread.sleep(2000);
         SelectDestintipnCity.clear();
         SelectDestintipnCity.sendKeys(destination);
     }
@@ -61,7 +63,9 @@ public class SpiceJetHomepage {
     @FindBy(how = How.ID,using = "ctl00_mainContent_ddl_destinationStation1_CTXT")
     WebElement ArrivalCity;
 
-    public String ArrivalCityGetCSS() {
+    public String ArrivalCity(String arr) {
+        ArrivalCity.clear();
+        ArrivalCity.sendKeys(arr);
         return  ArrivalCity.getCssValue("color");
     }
 
@@ -80,5 +84,16 @@ public class SpiceJetHomepage {
       s.selectByValue("USD");
       s.selectByIndex(4);
       s.selectByVisibleText("USD");
+    }
+
+
+    @FindBy(how = How.ID,using = "highlight-addons")
+    WebElement AddonsListelements;
+
+    public void GetAddOnsListElemeents() throws InterruptedException {
+
+        Thread.sleep(2000);
+        AddonsListelements.click();
+
     }
 }

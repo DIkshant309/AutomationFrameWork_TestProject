@@ -3,10 +3,15 @@ package StepDefination;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.Assert;
+import org.openqa.selenium.interactions.Actions;
 import pageFactory.SpiceJetHomepage;
+
+import java.util.ArrayList;
 
 import static Utility.Constant.SpiceJetURL;
 
@@ -21,25 +26,45 @@ public class LoginTestStep {
         System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver_win32/chromedriver");
         driver = new ChromeDriver();
         driver.get(SpiceJetURL);
-        driver.manage().window().fullscreen();
+      //  driver.manage().window().fullscreen();
         String URL = driver.getCurrentUrl();
 
         Assert.assertEquals(SpiceJetURL, URL);
 
     }
 
-    @When("entering the destination and the arrival information to get the rates")
-    public void entering_the_destination_and_the_arrival_information_to_get_the_rates() throws InterruptedException {
+    @When("^entering the (.*?) and the (.*?) information to get the rates$")
+    public void entering_the_destination_and_the_arrival_information_to_get_the_rates(String dest, String arr) throws InterruptedException {
         objSpiceJetHomepage = new SpiceJetHomepage(driver);
 
         objSpiceJetHomepage.CLickOnHotelsTab();
-        Thread.sleep(2000);
         objSpiceJetHomepage.CLickOnFlightsTab();
-        objSpiceJetHomepage.SelectDestinationCity("Delhi");
+        objSpiceJetHomepage.SelectDestinationCity(dest);
         objSpiceJetHomepage.SubmitButtonCLick();
-        String color = objSpiceJetHomepage.ArrivalCityGetCSS();
+        String color = objSpiceJetHomepage.ArrivalCity(arr);
         System.out.print(color);
       //  objSpiceJetHomepage.ClickingOnFlights("Covid 19 Information");
+      //  driver.close();
+
+    //    objSpiceJetHomepage.GetAddOnsListElemeents();
+        Thread.sleep(2000);
+        Actions a = new Actions(driver);
+        a.moveToElement(driver.findElement(By.id("highlight-addons"))).build().perform();
+
+        //a.moveToElement(driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT"))).click().sendKeys(Keys.chord(Keys.ALT,Keys.ENTER));
+
+        a.moveToElement(driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT"))).click().build().perform();
+      //  Thread.sleep(2000);
+      //   a.moveToElement(driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT"))).click().sendKeys(Keys.BACK_SPACE).build().perform();
+
+       // driver.findElement(By.id("highlight-addons")).click();
+
+    //   ArrayList<String> tab  = new  ArrayList<String> (driver.getWindowHandles());
+    //   driver.switchTo().window(tab.get(3));
+
+
+        driver.findElement(By.className("covid19")).click();
+        Thread.sleep(5000);
 
     }
 
