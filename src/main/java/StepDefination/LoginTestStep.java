@@ -1,30 +1,38 @@
 package StepDefination;
 
+import glue.Hooks;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.Assert;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import pageFactory.SpiceJetHomepage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 import java.util.ArrayList;
 
 import static Utility.Constant.SpiceJetURL;
 
 public class LoginTestStep {
-    WebDriver driver;
+    RemoteWebDriver driver;
+    Hooks ObjHooks= new Hooks();
     public SpiceJetHomepage objSpiceJetHomepage;
 
 
     @Given("landing on the SpiceJet HomePage")
     public void landing_on_the_spice_jet_home_page() {
 
-        System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver_win32/chromedriver");
-        driver = new ChromeDriver();
+        driver = ObjHooks.Browser();
         driver.get(SpiceJetURL);
       //  driver.manage().window().fullscreen();
         String URL = driver.getCurrentUrl();
@@ -34,7 +42,7 @@ public class LoginTestStep {
     }
 
     @When("^entering the (.*?) and the (.*?) information to get the rates$")
-    public void entering_the_destination_and_the_arrival_information_to_get_the_rates(String dest, String arr) throws InterruptedException {
+    public void entering_the_destination_and_the_arrival_information_to_get_the_rates(String dest, String arr) throws InterruptedException, IOException {
         objSpiceJetHomepage = new SpiceJetHomepage(driver);
 
         objSpiceJetHomepage.CLickOnHotelsTab();
@@ -66,6 +74,14 @@ public class LoginTestStep {
         driver.findElement(By.className("covid19")).click();
         Thread.sleep(5000);
 
+
+        Properties prop =  new Properties();
+        String fileName = "secrets.properties";
+        InputStream input = new FileInputStream("secrets.properties");
+        prop.load(input);
+
+        System.out.print(prop.getProperty("username"));
+        System.out.print(prop.getProperty("password"));
     }
 
     @When("making the Assertions and validations for the information that was added")
@@ -75,6 +91,19 @@ public class LoginTestStep {
 
     @Then("on the results page the validations were made and the results were presented")
     public void on_the_results_page_the_validations_were_made_and_the_results_were_presented() {
+
+    }
+
+
+    @Given("landing on the indigo HomePage")
+    public void landing_on_the_indigo_home_page() {
+
+        driver = ObjHooks.Browser();
+        driver.get(SpiceJetURL);
+        //  driver.manage().window().fullscreen();
+        String URL = driver.getCurrentUrl();
+
+        Assert.assertEquals(SpiceJetURL, URL);
 
     }
 
