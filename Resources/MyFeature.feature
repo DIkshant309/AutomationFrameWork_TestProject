@@ -1,5 +1,7 @@
 Feature: MyFeature_File
 
+
+  @Test1
   Scenario Outline: Spicejet Getting the rates for flights from A to B
     Given  landing on the SpiceJet HomePage
     When   entering the <destination> and the <arrival> information to get the rates
@@ -14,7 +16,7 @@ Feature: MyFeature_File
     #  |  Mumbai     | Delhi      |
     #  |  Kolkata    | Delhi      |
 
-
+  @Test2
   Scenario Outline: Indigo Getting the rates for flights from A to B
     Given  landing on the SpiceJet HomePage
     When   entering the <destination> and the <arrival> information to get the rates

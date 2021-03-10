@@ -6,9 +6,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Hooks {
 
-public RemoteWebDriver driver;
+public static RemoteWebDriver driver;
 
-    public RemoteWebDriver Browser (){
+    public static RemoteWebDriver Browser (){
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("version","87.0");

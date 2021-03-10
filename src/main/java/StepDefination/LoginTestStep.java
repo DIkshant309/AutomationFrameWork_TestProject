@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import static Utility.Constant.SpiceJetURL;
 
@@ -74,6 +75,7 @@ public class LoginTestStep {
         driver.findElement(By.className("covid19")).click();
         Thread.sleep(5000);
 
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         Properties prop =  new Properties();
         String fileName = "secrets.properties";

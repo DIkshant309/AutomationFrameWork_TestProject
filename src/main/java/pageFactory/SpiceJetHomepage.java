@@ -1,5 +1,6 @@
 package pageFactory;
 
+import Utility.WaitTime;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,12 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static glue.Hooks.driver;
+
 public class SpiceJetHomepage {
 
     public SpiceJetHomepage(RemoteWebDriver driver)
     {
         PageFactory.initElements(driver,this);
+
     }
+
+    WaitTime time = new WaitTime();
 
 
     @FindBy(how = How.TAG_NAME,using = "a")
@@ -42,6 +48,7 @@ public class SpiceJetHomepage {
     WebElement ClickFlightsTab;
 
     public void CLickOnFlightsTab(){
+        time.ExecuteVisibility(driver,ClickFlightsTab);
         ClickFlightsTab.click();
     }
 
@@ -49,6 +56,7 @@ public class SpiceJetHomepage {
     WebElement ClickHotelsTab;
 
     public void CLickOnHotelsTab(){
+
         ClickHotelsTab.click();
     }
 
